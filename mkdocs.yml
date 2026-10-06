@@ -1,12 +1,12 @@
 # Site metadata
-site_name: Engineering Notes
+site_name: Flight Control Notes
 site_description: Personal engineering reference — class notes, MATLAB/Simulink, flight control, Git, and snippets.
-site_author: Your Name
-site_url: https://YOUR-USERNAME.github.io/YOUR-REPO/
+site_author: Lucas Duarte
+site_url: https://lucas-pid.github.io/flight-control-notes/
 
 # Repository info (used by theme for "Edit this page" links — update these)
-repo_url: https://github.com/YOUR-USERNAME/YOUR-REPO
-repo_name: GitHub
+repo_url: https://github.com/lucas-pid/flight-control-notes
+repo_name: flight-control-notes
 edit_uri: edit/main/docs/
 
 # Theme
