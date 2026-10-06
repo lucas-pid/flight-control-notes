@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="420" height="200" viewBox="0 0 420 200" role="img" aria-labelledby="title desc">
+  <title id="title">Aircraft coordinate system</title>
+  <desc id="desc">Simple body axes: x forward, y right, z down.</desc>
+  <rect x="1" y="1" width="418" height="198" fill="none" stroke="#9aa0a6" stroke-width="1"/>
+  <!-- aircraft outline (stylized) -->
+  <g stroke="#1a1a1a" stroke-width="2" fill="none" stroke-linecap="round">
+    <line x1="60" y1="100" x2="340" y2="100"/>
+    <line x1="140" y1="100" x2="120" y2="60"/>
+    <line x1="140" y1="100" x2="120" y2="140"/>
+    <line x1="300" y1="100" x2="260" y2="72"/>
+    <line x1="300" y1="100" x2="260" y2="128"/>
+  </g>
+  <!-- axes -->
+  <g font-family="sans-serif" font-size="14" fill="#1a1a1a">
+    <line x1="210" y1="100" x2="290" y2="100" stroke="#0b57d0" stroke-width="2" marker-end="url(#arrow)"/>
+    <line x1="210" y1="100" x2="210" y2="160" stroke="#0b57d0" stroke-width="2" marker-end="url(#arrow)"/>
+    <text x="295" y="95">x</text>
+    <text x="218" y="160">z</text>
+  </g>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L6,3 L0,6" fill="none" stroke="#0b57d0" stroke-width="1.5"/>
+    </marker>
+  </defs>
+  <text x="60" y="30" font-family="sans-serif" font-size="13" fill="#444">Body axes: x forward, z down (y out of plane)</text>
+</svg>
