@@ -4,9 +4,11 @@ A personal engineering reference. Short notes, equations, and snippets — no fl
 
 ## Sections
 
+- [Notation](notation/index.md) — symbols and conventions.
+- [Coordinate Systems](coordinate-systems/index.md) — reference frames and transformations.
+- [Flight Control](flight-control/index.md) — PID, equations of motion references.
 - [MATLAB](matlab/index.md) — matrix operations, scripting basics.
 - [Simulink](simulink/index.md) — model organization and solver notes.
-- [Flight Control](flight-control/index.md) — PID, equations of motion references.
 - [Git](git/index.md) — everyday commands.
 
 ## How this site works

@@ -1,7 +1,9 @@
 nav:
   - Home: index.md
+  - notation
+  - coordinate-systems
+  - flight-control
   - matlab
   - simulink
-  - flight-control
   - git
   - ...
