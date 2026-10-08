@@ -46,9 +46,9 @@ $$\boldsymbol{M}_{AB}=\begin{bmatrix}
 Rotation from ECEF ($E$) to NED ($O$) at geodetic latitude $\phi$ (WGS84) and longitude $\lambda$.
 
 $$\boldsymbol{M}_{OE}=\begin{bmatrix}
--\sin \phi \cos \lambda  & -\sin \phi \sin \lambda  & -\cos \phi \\
+-\sin \phi \cos \lambda  & -\sin \phi \sin \lambda  & \cos \phi \\
 -\sin \lambda  & \cos \lambda  & 0\\
--\cos \phi \cos \lambda  & -\cos \phi \sin \lambda  & \sin \lambda 
+-\cos \phi \cos \lambda  & -\cos \phi \sin \lambda  & -\sin \phi 
 \end{bmatrix}$$
 
 ## NED to Body frame
