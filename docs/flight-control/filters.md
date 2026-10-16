@@ -1,6 +1,6 @@
 # Filters
 
-Transfer functions and state-space realizations of commonly used filters. All are continuous-time, single input $u$, output $y$, with state $\boldsymbol{x}$. Cut-off frequency $\omega_c$ and time constant $\tau = 1/\omega_c$.
+Transfer functions and state-space realizations of commonly used filters. All are continuous-time, single input $u$, output $y$. Cut-off frequency $\omega_n$ and time constant $\tau = 1/\omega_n$.
 
 ## First-Order Low-Pass
 
@@ -113,13 +113,18 @@ ss_hpf   = ss(A,B,C,D,...
 
 ## Notch Filter
 
-Attenuates a narrow band around the center frequency $\omega_n$ while passing everything else. $\omega_q$ sets the notch width:
+Attenuates a narrow band around the center frequency $\omega_n$ while passing everything else. $\omega_q$ sets the notch width; the undamped numerator gives full attenuation at $\omega_n$:
 
-$$H(s) = ...$$
+$$H(s) = \frac{s^2 + \omega_n^2}{s^2 + \omega_q\,s + \omega_n^2}$$
+
+<figure>
+  <object data="../../assets/images/block-diagrams-notch-filter.drawio.svg" type="image/svg+xml" style="max-width:100%;">Block diagram of a notch filter</object>
+  <figcaption>Block diagram of a notch filter</figcaption>
+</figure>
 
 State-space realization:
 
-$$...$$
+$$\begin{bmatrix} \dot{x} \\ \ddot{x} \end{bmatrix} = \begin{bmatrix} 0 & 1 \\ -\omega_n^2 & -\omega_q \end{bmatrix} \cdot \begin{bmatrix} x \\ \dot{x} \end{bmatrix} + \begin{bmatrix} 0 \\ 1 \end{bmatrix} \cdot u, \qquad y = \begin{bmatrix} 0 & -\omega_q \end{bmatrix} \cdot \begin{bmatrix} x \\ \dot{x} \end{bmatrix} + u$$
 
 <figure>
   <object data="../../assets/images/block-diagrams-notch-filter-bode.drawio.svg" type="image/svg+xml" style="max-width:100%;">Bode magnitude plot of a notch filter</object>
