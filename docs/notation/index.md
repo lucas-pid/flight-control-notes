@@ -10,7 +10,7 @@ where $\boldsymbol{M}_{AB}$ represents the transformation matrix from frame $B$ 
 
 ## Geometric vectors
 
-Geometric vectors follow the notation of the [TUM FSD Institute](https://www.fsd.ed.tum.de/) as close as possible. For example,
+Geometric vectors follow the notation of the [TUM FSD Institute](https://www.fsd.ed.tum.de/) as closely as possible. The notation may seem heavy, but it depicts velocities and angular rates between different reference frames unambiguously. For example,
 
 $$(\boldsymbol{V}^R)^I_B$$
 
