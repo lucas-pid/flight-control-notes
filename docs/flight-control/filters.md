@@ -1,6 +1,6 @@
 # Filters
 
-Transfer functions and state-space realizations of commonly used filters. All are continuous-time, single input $u$, output $y$. Cut-off frequency $\omega_n$ and time constant $\tau = 1/\omega_n$.
+Transfer functions and state-space realizations of commonly used filters.
 
 ## First-Order Low-Pass
 
