@@ -3,12 +3,12 @@ Rotations between the frames in [Reference Frames](reference-frames.md).
 
 ## Basic Rotations
 
-Convention: $\boldsymbol{v}_B = \boldsymbol{M}_{BA} \cdot \boldsymbol{v}_A$ maps coordinates from frame $A$ to frame $B$. All matrices are orthonormal, so the inverse mapping is is given by the transpose $\boldsymbol{M}_{BA} = \boldsymbol{M}_{AB}^T$.
+Convention: $\boldsymbol{v}_B = \boldsymbol{M}_{BA} \cdot \boldsymbol{v}_A$ maps coordinates from frame $A$ to frame $B$. All matrices are orthonormal, so the inverse mapping is given by the transpose $\boldsymbol{M}_{BA} = \boldsymbol{M}_{AB}^T$.
 
 The figure below shows a two-dimensional example on how to compute $\boldsymbol{M}_{BA}$ and $\boldsymbol{M}_{AB}$.
 
 <figure>
-  <object data="../../assets/images/frames_notes-basic_rotation.drawio.svg" type="image/svg+xml" style="max-width:100%;">ECI frame</object>
+  <object data="../../assets/images/frames_notes-basic_rotation.drawio.svg" type="image/svg+xml" style="max-width:100%;">Basic rotation in two dimensions</object>
   <figcaption>Basic rotation in two dimensions</figcaption>
 </figure>
 
@@ -38,6 +38,33 @@ $$\boldsymbol{M}_{AB}=\begin{bmatrix}
 0 & 0 & 1
 \end{bmatrix}$$
 
+```matlab
+function M_AB = Mx(alpha_rad)
+% Rotation around the x-axis, right-handed
+M = [1,         0      ,        0;
+     0,  cos(alpha_rad),  sin(alpha_rad);
+     0, -sin(alpha_rad),  cos(alpha_rad)];
+end
+```
+
+```matlab
+function M_AB = My(alpha_rad)
+% Rotation around the y-axis, right-handed
+M = [cos(alpha_rad), 0, -sin(alpha_rad);
+           0       , 1,        0;
+     sin(alpha_rad), 0,  cos(alpha_rad)];
+end
+```
+
+```matlab
+function M_AB = Mz(alpha_rad)
+% Rotation around the z-axis, right-handed
+M = [ cos(alpha_rad), sin(alpha_rad), 0;
+     -sin(alpha_rad), cos(alpha_rad), 0;
+            0       ,       0,        1];
+end
+```
+
 !!! note Rotations are NOT commutative
     Successive rotations around coordinate axis are not commutative. Therefore, the sequence of rotation matters.
 
@@ -50,6 +77,13 @@ $$\boldsymbol{M}_{OE}=\begin{bmatrix}
 -\sin \lambda  & \cos \lambda  & 0\\
 -\cos \phi \cos \lambda  & -\cos \phi \sin \lambda  & -\sin \phi 
 \end{bmatrix}$$
+
+```matlab
+% Geodetic latitude phi and longitude lambda [rad]
+M_OE = [-sin(phi_rad)*cos(lambda_rad), -sin(phi_rad)*sin(lambda_rad),  cos(phi_rad);
+        -sin(lambda_rad)             ,       cos(lambda_rad)        ,        0;
+        -cos(phi_rad)*cos(lambda_rad), -cos(phi_rad)*sin(lambda_rad),  -sin(phi_rad)];
+```
 
 ## NED to Body frame
 
@@ -77,6 +111,18 @@ $$\boldsymbol{M}_{BO} =\begin{bmatrix}
 \cos \Psi \sin \Theta \cos \Phi +\sin \Psi \sin \Phi  & \sin \Psi \sin \Theta \cos \Phi -\cos \Psi \sin \Phi  & \cos \Theta \cos \Phi 
 \end{bmatrix}$$
 
+```matlab
+% Yaw Psi, pitch Theta, roll Phi [rad]
+M_BO = Mx(Phi_rad) * My(Theta_rad) * Mz(Psi_rad);
+```
+
+```matlab
+% Same transformation, fully expanded
+M_BO = [cos(Psi_rad)*cos(Theta_rad)                                       ,                   sin(Psi_rad)*cos(Theta_rad)                     ,      -sin(Theta_rad);
+        cos(Psi_rad)*sin(Theta_rad)*sin(Phi_rad)-sin(Psi_rad)*cos(Phi_rad), sin(Psi_rad)*sin(Theta_rad)*sin(Phi_rad)+cos(Psi_rad)*cos(Phi_rad), cos(Theta_rad)*sin(Phi_rad);
+        cos(Psi_rad)*sin(Theta_rad)*cos(Phi_rad)+sin(Psi_rad)*sin(Phi_rad), sin(Psi_rad)*sin(Theta_rad)*cos(Phi_rad)-cos(Psi_rad)*sin(Phi_rad), cos(Theta_rad)*cos(Phi_rad)];
+```
+
 ## NED to Kinematic frame
 
 Track angle $\chi_K$ followed by flight-path angle $\gamma_K$.
@@ -99,6 +145,18 @@ $$\boldsymbol{M}_{KO} =\begin{bmatrix}
 \cos \chi_{K}\sin \gamma_{K} & \sin \chi_{K}\sin \gamma_{K} & \cos \gamma_{K}
 \end{bmatrix}$$
 
+```matlab
+% Track angle chi_K and flight-path angle gamma_K [rad]
+M_KO = My(gamma_K_rad) * Mz(chi_K_rad);
+```
+
+```matlab
+% Same transformation, fully expanded
+M_KO = [ cos(chi_K_rad)*cos(gamma_K_rad), sin(chi_K_rad)*cos(gamma_K_rad), -sin(gamma_K_rad);
+        -sin(chi_K_rad)                 ,             cos(chi_K_rad)     ,         0;
+         cos(chi_K_rad)*sin(gamma_K_rad), sin(chi_K_rad)*sin(gamma_K_rad),  cos(gamma_K_rad)];
+```
+
 ## Aerodynamic to Body frame
 
 Negative sideslip $-\beta_A$ followed by angle of attack $\alpha_A$.
@@ -120,3 +178,15 @@ $$\boldsymbol{M}_{BA} =\begin{bmatrix}
 \sin \beta _{A} & \cos \beta _{A} & 0\\
 \sin \alpha _{A}\cos \beta _{A} & -\sin \alpha _{A}\sin \beta _{A} & \cos \alpha _{A}
 \end{bmatrix}$$
+
+```matlab
+% Sideslip beta_A and angle of attack alpha_A [rad]
+M_BA = My(alpha_A_rad) * Mz(-beta_A_rad);
+```
+
+```matlab
+% Same transformation, fully expanded
+M_BA = [cos(alpha_A_rad)*cos(beta_A_rad), -cos(alpha_A_rad)*sin(beta_A_rad), -sin(alpha_A_rad);
+                  sin(beta_A_rad)       ,             cos(beta_A_rad),               0;
+        sin(alpha_A_rad)*cos(beta_A_rad), -sin(alpha_A_rad)*sin(beta_A_rad),  cos(alpha_A_rad)];
+```
