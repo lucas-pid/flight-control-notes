@@ -76,6 +76,19 @@ The kinematic frame, denoted $K$, is fixed to the aircraft; its origin coincides
   <figcaption>Kinematic frame</figcaption>
 </figure>
 
+## Aerodynamic Frame
+
+The aerodynamic frame, denoted $A$, is fixed to the aircraft; its origin coincides with the body frame origin.
+
+- $x$-axis: coincides with the direction of the aerodynamic velocity vector.
+- $y$-axis: points to the right, forming a right-hand system with the $x$ and $z$ axes.
+- $z$-axis: downwards on the $x_Bz_B$ plane, perpendicular to the $x_A$ axis.
+
+<figure>
+  <object data="../../assets/images/frames_notes-aerodynamic_frame.drawio.svg" type="image/svg+xml" style="max-width:100%;">Aerodynamic frame</object>
+  <figcaption>Aerodynamic frame</figcaption>
+</figure>
+
 ## Summary
 
 | Frame | Symbol | Origin | $x$ | $y$ | $z$ |
