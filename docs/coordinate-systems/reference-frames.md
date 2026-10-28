@@ -98,3 +98,4 @@ The aerodynamic frame, denoted $A$, is fixed to the aircraft; its origin coincid
 | Body | $B$ | Reference point $R$ | Forward | Right wing | Down |
 | NED | $O$ | Reference point $R$ | North | East | Down (gravity) |
 | Kinematic | $K$ | Reference point $R$ | Direction of the kinematic velocity vector | Lies on the $x_Oy_O$ plane, perpendicular to the $x_K$-axis | Forms right-handed system with $x$ and $y$ axes |
+| Aerodynamic | $A$ | Reference point $R$ | Direction of the aerodynamic velocity vector | Points right, completing right-handed system with $x$ and $z$ | Downwards in the $x_Bz_B$ plane, perpendicular to the $x_A$-axis |
