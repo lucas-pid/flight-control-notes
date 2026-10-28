@@ -16,7 +16,7 @@ In three-dimensions, the transformations are simply a series of successive right
 
 Rotation around $x$-axis
 
-$$\boldsymbol{M}_{AB}=\begin{bmatrix}
+$$\boldsymbol{M}_{x}=\begin{bmatrix}
 1 & 0 & 0\\
 0 & \cos \alpha  & \sin \alpha \\
 0 & -\sin \alpha  & \cos \alpha 
@@ -24,7 +24,7 @@ $$\boldsymbol{M}_{AB}=\begin{bmatrix}
 
 Rotation around $y$-axis
 
-$$\boldsymbol{M}_{AB}=\begin{bmatrix}
+$$\boldsymbol{M}_{y}=\begin{bmatrix}
 \cos \alpha  & 0 & -\sin \alpha \\
 0 & 1 & 0\\
 \sin \alpha  & 0 & \cos \alpha 
@@ -32,36 +32,36 @@ $$\boldsymbol{M}_{AB}=\begin{bmatrix}
 
 Rotation around $z$-axis
 
-$$\boldsymbol{M}_{AB}=\begin{bmatrix}
+$$\boldsymbol{M}_{z}=\begin{bmatrix}
 \cos \alpha  & \sin \alpha  & 0\\
 -\sin \alpha  & \cos \alpha  & 0\\
 0 & 0 & 1
 \end{bmatrix}$$
 
 ```matlab
-function M_AB = Mx(alpha_rad)
+function M_AB = M_x(alpha_rad)
 % Rotation around the x-axis, right-handed
-M = [1,         0      ,        0;
-     0,  cos(alpha_rad),  sin(alpha_rad);
-     0, -sin(alpha_rad),  cos(alpha_rad)];
+M_AB = [1,         0      ,        0;
+        0,  cos(alpha_rad),  sin(alpha_rad);
+        0, -sin(alpha_rad),  cos(alpha_rad)];
 end
 ```
 
 ```matlab
-function M_AB = My(alpha_rad)
+function M_AB = M_y(alpha_rad)
 % Rotation around the y-axis, right-handed
-M = [cos(alpha_rad), 0, -sin(alpha_rad);
-           0       , 1,        0;
-     sin(alpha_rad), 0,  cos(alpha_rad)];
+M_AB = [cos(alpha_rad), 0, -sin(alpha_rad);
+              0       , 1,        0;
+        sin(alpha_rad), 0,  cos(alpha_rad)];
 end
 ```
 
 ```matlab
-function M_AB = Mz(alpha_rad)
+function M_AB = M_z(alpha_rad)
 % Rotation around the z-axis, right-handed
-M = [ cos(alpha_rad), sin(alpha_rad), 0;
-     -sin(alpha_rad), cos(alpha_rad), 0;
-            0       ,       0,        1];
+M_AB = [ cos(alpha_rad), sin(alpha_rad), 0;
+        -sin(alpha_rad), cos(alpha_rad), 0;
+               0       ,       0,        1];
 end
 ```
 
@@ -113,7 +113,7 @@ $$\boldsymbol{M}_{BO} =\begin{bmatrix}
 
 ```matlab
 % Yaw Psi, pitch Theta, roll Phi [rad]
-M_BO = Mx(Phi_rad) * My(Theta_rad) * Mz(Psi_rad);
+M_BO = M_x(Phi_rad) * M_y(Theta_rad) * M_z(Psi_rad);
 ```
 
 ```matlab
@@ -147,7 +147,7 @@ $$\boldsymbol{M}_{KO} =\begin{bmatrix}
 
 ```matlab
 % Track angle chi_K and flight-path angle gamma_K [rad]
-M_KO = My(gamma_K_rad) * Mz(chi_K_rad);
+M_KO = M_y(gamma_K_rad) * M_z(chi_K_rad);
 ```
 
 ```matlab
@@ -181,7 +181,7 @@ $$\boldsymbol{M}_{BA} =\begin{bmatrix}
 
 ```matlab
 % Sideslip beta_A and angle of attack alpha_A [rad]
-M_BA = My(alpha_A_rad) * Mz(-beta_A_rad);
+M_BA = M_y(alpha_A_rad) * M_z(-beta_A_rad);
 ```
 
 ```matlab
