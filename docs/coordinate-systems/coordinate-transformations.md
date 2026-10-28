@@ -190,3 +190,28 @@ M_BA = [cos(alpha_A_rad)*cos(beta_A_rad), -cos(alpha_A_rad)*sin(beta_A_rad), -si
                   sin(beta_A_rad)       ,             cos(beta_A_rad),               0;
         sin(alpha_A_rad)*cos(beta_A_rad), -sin(alpha_A_rad)*sin(beta_A_rad),  cos(alpha_A_rad)];
 ```
+
+### Aerodynamic forces
+
+One should note that lift ($L$) and drag ($D$) are usually depicted with a slightly different set of axis such that positive lift points up and positive drag acts against the flight direction. Therefore, to depict the aerodynamic forces in the presented aerodynamic frame, the lift and drag must be sign-flipped.
+
+$$\boldsymbol{F}_A = \begin{bmatrix} -D \\ Q \\ -L \end{bmatrix}$$
+
+Transforming to the body frame with $\boldsymbol{M}_{BA}$:
+
+$$\boldsymbol{F}_B = \boldsymbol{M}_{BA}\ \cdot \boldsymbol{F}_A =
+\begin{bmatrix}
+\cos \alpha _{A}\cos \beta _{A} & -\cos \alpha _{A}\sin \beta _{A} & -\sin \alpha _{A}\\
+\sin \beta _{A} & \cos \beta _{A} & 0\\
+\sin \alpha _{A}\cos \beta _{A} & -\sin \alpha _{A}\sin \beta _{A} & \cos \alpha _{A}
+\end{bmatrix} \cdot
+\begin{bmatrix} -D \\ Q \\ -L \end{bmatrix}$$
+
+```matlab
+% Positive magnitudes: D (drag), L (lift), Q (side force)
+% Sign flip: drag opposes +x_A, lift opposes +z_A
+F_A = [-D; Q; -L];
+
+% To body frame
+F_B = M_BA * F_A;
+```
