@@ -6,7 +6,7 @@ A personal engineering reference. Short notes, equations, and snippets — no fl
 
 - [Notation](notation/index.md) — symbols and conventions.
 - [Coordinate Systems](coordinate-systems/index.md) — reference frames and transformations.
-- [Flight Dynamics](flight-dynamics/index.md) — translational and rotational equations of motion.
+- [Flight Dynamics](flight-dynamics/index.md) — kinematics and equations of motion.
 - [Flight Control](flight-control/index.md) — PID, filters, controller notes.
 - [MATLAB](matlab/index.md) — matrix operations, scripting basics.
 - [Simulink](simulink/index.md) — model organization and solver notes.
